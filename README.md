@@ -39,7 +39,7 @@ SELECT
 
 3. Identify the top 5 products that have generated the highest revenue.
 
-   ```
+```
    SELECT 
      o. product_id,
    p. product_name,
@@ -52,7 +52,6 @@ SELECT
    ORDER BY 3 DESC
    LIMIT 5;
 
-```
 ```
 4. Determine the top 5 products whose revenue has decreased compared to the previous year.
 WITH py1 AS
