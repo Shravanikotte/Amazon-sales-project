@@ -11,6 +11,8 @@ The dataset used in this project consists of [insert number] rows of data, repre
 # Analysis Questions Resolved
 During the analysis, the following key questions were addressed using SQL queries and data analysis techniques:
 1. Find out the top 5 customers who made the highest profits.
+
+```
 SELECT
        o.customer_id,
     c.customer_name,
@@ -22,20 +24,26 @@ SELECT
    GROUP BY 1,2
    ORDER BY 3 DESC
    LIMIT 5;
+```
 
 2. Find out the average quantity ordered per category.
+
+```
 SELECT 
       category,
    AVG( quantity) as AVERAGE_QUANTITY
    FROM orders
    WHERE category is not null
    GROUP BY 1
+```
 
 3. Identify the top 5 products that have generated the highest revenue.
-SELECT 
+
+   ```
+   SELECT 
      o. product_id,
-  p. product_name,
-  ROUND(SUM(o.sale)::NUMERIC,2) Highest_revenue
+   p. product_name,
+   ROUND(SUM(o.sale)::NUMERIC,2) Highest_revenue
    FROM products as p
    INNER JOIN 
    orders as o
@@ -44,8 +52,11 @@ SELECT
    ORDER BY 3 DESC
    LIMIT 5;
 
+```
+```
 4. Determine the top 5 products whose revenue has decreased compared to the previous year.
 WITH py1 AS
+```
 (
     SELECT
         p.product_name,
@@ -87,8 +98,11 @@ WHERE
 ORDER BY 
     py1.revenue DESC
 LIMIT 5;
+```
 
 5. Identify the highest profitable sub-category.
+
+```
 SELECT 
       sub_category,
    SUM(sale) - SUM(price_per_unit) AS HIGHEST_PROFITABLE_SUB_CATEGORY
@@ -97,17 +111,21 @@ SELECT
    GROUP BY 1
    ORDER  BY 2 DESC
    LIMIT 1;
+```
 
 6. Find out the states with the highest total orders.
+```
 SELECT state,
       COUNT(order_id) as Total_orders
 FROM orders
 GROUP BY 1
 ORDER BY 2 DESC
 LIMIT 5;
+```
 
   
 7. Determine the month with the highest number of orders.
+```
 SELECT
       EXTRACT(MONTH FROM order_date) as MONTH,
    COUNT(order_id) as highest
@@ -115,17 +133,22 @@ SELECT
    GROUP BY 1
    ORDER BY 2 DESC
    LIMIT 1;
+```
 
 8. Calculate the profit margin percentage for each sale (Profit divided by Sales).
+
+```
 SELECT
     sale,
     SUM(price_per_unit/sale) AS profit_margin_percentage
 FROM orders
 GROUP BY 1
 ORDER BY 2 DESC ;
+```
 
 
 9. Calculate the percentage contribution of each sub-category
+```
 SELECT 
     sub_category,
     SUM(sale) AS total_sales,
@@ -134,9 +157,11 @@ FROM
     orders
 GROUP BY 
     sub_category;
+```
 
 10. Identify the top 2 categories that have received maximum returns and their return
     percentage.
+```
 SELECT 
     O.category,
     COUNT(R.order_id) AS total_returns,
@@ -150,7 +175,7 @@ GROUP BY
 ORDER BY 
     total_returns DESC
 LIMIT 2;
-
+```
 
 # Entity-Relationship Diagram (ERD)
 
