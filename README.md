@@ -54,8 +54,9 @@ SELECT
 
 ```
 4. Determine the top 5 products whose revenue has decreased compared to the previous year.
-WITH py1 AS
 ```
+WITH py1 AS
+
 (
     SELECT
         p.product_name,
